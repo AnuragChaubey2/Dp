@@ -1,0 +1,25 @@
+class Array1{
+    public static void main(String[] args){
+        int[]arr={7,1,5,3,6,4};
+        System.out.println(BestTime(arr));
+    }
+    public static int BestTime(int[] arr){
+        int max=0;
+        int[] dp=new int[arr.length];
+        for(int i=0;i<dp.length;i++){
+            dp[i]=0;           
+        }
+        for(int i=0;i<arr.length;i++){
+            for(int j=1;j<arr.length;j++){
+                //choosing diffrent day
+              dp[i]= Integer.max(dp[i],arr[j]-arr[i]);
+            }
+        }
+        for(int i=0;i<arr.length;i++){
+            if(max<dp[i]){
+                max=dp[i];
+            }
+        }
+        return max;
+    }
+}
