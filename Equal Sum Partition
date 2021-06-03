@@ -1,0 +1,34 @@
+//Equal Sum partition Problem 
+class Array1{
+    public static void main(String[] args){
+        int[] arr={1,5,11,5};
+        int n=arr.length;
+        System.out.println(part(arr,n));
+    }
+    public static boolean iSPartition(int[] arr,int n,int sum){
+        if(sum==0){
+            return true;   //kuch nhi hoga to wahi answer
+        }
+        if(n==0 && sum!=0){
+            return false;
+        }
+        if(arr[n-1]>sum){
+            //we will not include into our set
+            return iSPartition(arr,n-1,sum);
+        }
+        return iSPartition(arr,n-1,sum/2) || iSPartition(arr,n-1,sum/2-arr[n-1]);
+        
+    }
+    public static boolean part(int[] arr,int n){
+        //this is what we have to basically deal with .....the wheather the sum of array is even or not.....and then we just call this Knapsadk looking
+        // choose or not choose function 
+      int sum=0;
+        for(int i=0;i<n;i++){
+           sum+=arr[i]; 
+        }
+        if(sum%2==0){
+            return iSPartition(arr,n,sum/2);
+        }
+        return false;
+    }
+}
