@@ -1,0 +1,36 @@
+//shortest common supersequecne
+//lcs of two Strings minus addition of both the length of the strings
+class Array1{
+    public static void main(String[] args){
+        String s1="geek";
+        String s2="ee";
+        System.out.println(LCS(s1,s2,s1.length(),s2.length()));
+    }
+    public static int LCS(String s1,String s2,int n,int m){
+        int[][] dp=new int[n+1][m+1];
+        for(int i=0;i<=n;i++){
+            for(int j=0;j<=m;j++){
+                if(i==0||j==0){
+                    dp[i][j]=0;
+                }
+                if(s1.charAt(i-1)==s2.charAt(j-1)){
+                    return 1+dp[i-1][j-1];
+                }else
+                dp[i][j] =Integer.max(dp[i][j-1], dp[i-1][j]);
+            }
+        }
+        return dp[n][m];
+    }
+    public static int shortestSuperSequence(String X, String Y)
+    {
+        int m = X.length();
+        int n = Y.length();
+ 
+        // find lcs
+        int l = LCS(X, Y, m, n);
+ 
+        // Result is sum of input string
+        // lengths - length of lcs
+        return (m + n - l);
+    }
+}
