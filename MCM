@@ -1,0 +1,42 @@
+//Matrix Chain Multiplication 
+/*
+suppose we have 3 matrix A,B and C
+A==2*3
+B==3*4
+c==4*5
+
+                ABC
+               /   \
+          (A)(BC)   (AB)(C)
+temp1
+  |
+for BC final matrix is of....3*5 and cost of multiplying this BC is 3*4*5 
+then finally ABC matrix will be of...2*5  and cost of multiplying becomes 2*3*5   A=l1 ,BC=r1 ,cost=A*(BC)...
+temp1==>l1+r1+arr[i-1]*arr[k]*arr[j]
+
+temp2==>l2+r2+arr[i-1]*arr[k]*arr[j]
+
+minimum ke liye ek minimum valriabkle leke bas compare karna 
+*/
+class Array1{
+    public static void main(String[] args){
+        int[] mat={10,20,30,40,50,50};
+              System.out.println(MCM(mat,0,mat.length-1));  
+    
+    }
+    public static int MCM(int[] arr,int i,int j){
+        int[][] dp=new int[100][100];
+        if(i==j){
+            return 0;
+        }
+        if(dp[i][j]==-1){
+            return dp[i][j];
+        }
+        dp[i][j]=Integer.MAX_VALUE;
+        for(int k=i;k<j;k++){
+           dp[i][j]=Math.min(dp[i][j],MCM(arr,i,k)+MCM(arr,k+1,j)+arr[i-1]*arr[k]*arr[j]);
+           
+        }
+       return dp[i][j];
+    }
+}
