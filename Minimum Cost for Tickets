@@ -1,0 +1,39 @@
+
+import java.util.Arrays;
+
+class Array1{
+    public static void main(String[] args){
+    int[] arr={1,4,6,7,8,20};
+     int[] cost={2,7,15};
+    System.out.println(mincostTickets(arr,cost));
+    
+    }
+    public static int mincostTickets(int[] days, int[] costs) {
+        //create an array to keep track of minimum to travel up through that day
+        int[] minSpent = new int[days[days.length - 1] + 1];   //bottmon up me ek size bada array le rhe....this is new way of adding hheheeh
+        minSpent[0] = 0;
+        
+//         iterate through each day
+        
+        int day = 0; //what index day we want to look at first
+        
+        for (int i = 1; i < minSpent.length; i++) {
+            int dayToLook = days[day];
+            //if it's not a travel day, doesn't cost anything, so same as minimum from day before
+            //supose day 3 hai to that dosent cost anything...like in our example...1 ke baad day 4 shuru
+            if (i < dayToLook) {
+                minSpent[i] = minSpent[i - 1];
+                continue;
+            }
+//             on the day
+//             compare the three options
+            int singleDay = costs[0] + minSpent[i - 1];
+            int sevenDay = costs[1] + minSpent[Math.max(0, i - 7)];
+            int thirtyDay = costs[2] + minSpent[Math.max(0, i - 30)];
+            minSpent[i] = Math.min(Math.min(singleDay,sevenDay), thirtyDay); 
+            day++;
+        }
+        //return the value in the last day of travel 
+        return minSpent[days[days.length - 1]];
+    }
+}
