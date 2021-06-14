@@ -1,0 +1,35 @@
+
+import java.util.Arrays;
+
+//paintng fens problem 
+class Array1{
+    public static void main(String[] args){
+        int n=8;
+        int k=3;
+        System.out.println(PaintnigFens(n,k));
+    }
+    public static int PaintnigFens(int n,int k){
+        int dp[]=new int[n+1];
+        Arrays.fill(dp,0);
+        dp[1]=k;
+        //there are k ways to paint the first fens
+        int same=k*1;
+        int diff=k*(k-1);
+        int total=same+diff;
+        for(int i=3;i<=n;i++){
+            same=diff*1;
+            //because pichli baar ke diffrent wale ke last ke 2 same nhi the 
+            //unko uthao and uska akhri color repeat kardo
+            //1 se multiply kiya coz...last ke color same chaiye 
+            //and only 1 way..of coloring last fens..kyunki beech wale ka 
+            //color pata hai ex rg so humne pata hai its g..
+            //that.s why we have taken g
+            diff=total*(k-1);
+            //pichli baar wale saare utho aur jo last color hai uske saath usko chor ke koi bhi color laga do
+            //means...suppose k=3; last 2 colors are rg..then last position pe g chor ke baki ke do means (k-1)
+            total=same+diff;
+        }
+        return total;
+        
+    }
+}
