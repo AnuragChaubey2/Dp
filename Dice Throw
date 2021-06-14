@@ -29,3 +29,6 @@ public static long findWays(int m, int n, int x){
         return table[n][x];
     }
      
+//kyun 3 for loop liye gye hai.....because , jab hm current wale index ke left digonnal pe jaynegy then...we will get that sum value which we use...and upar wale saare elements
+
+//ka sum hi to find karna hai....for its down right digonal to wo k sum nikal ke dega
