@@ -1,0 +1,42 @@
+
+import java.util.HashSet;
+
+//Dynamic programming approch of word break problem
+
+class Array1{
+    public static void main(String[] args){
+        
+    }
+    public static boolean Solution(String sentence,HashSet<String> dic){
+        int[] dp=new int[sentence.length()];
+        for(int i=0;i<dp.length;i++){
+            for(int j=0;j<i;j++){
+                String wordcheck=sentence.substring(j,i+1);
+                //j se leke i tak hi uthayegga kyunki i likhte to bas
+                //i-1 tak ka count karta
+                
+                /*
+                ------------------- when j=0,i+1
+                 ------------------ When j=1,i+1
+                  ----------------- When j=2,i+1 
+                   ---------------- When j=3, i+1
+                 So on 
+                
+                
+                */
+                if(dic.contains(wordcheck)){
+                    if(j>0){
+                    dp[i]+=dp[j-1];}
+                    else{
+                        //supose pep word hai j  pehle p pe hai and i+1
+                        //last p pe hai humne poora ka poora pep hi mil
+                        //gaya to incase if we add j-1..it is underflow
+                        //so 1 add karna
+                        dp[i]+=1; 
+                    }
+                }
+            }
+        }
+        return dp[sentence.length()-1]>0;
+    }
+}
