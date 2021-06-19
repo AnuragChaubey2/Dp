@@ -1,0 +1,30 @@
+class Array1{
+    public static void main(String[] args){
+        
+    }
+    public static int BallonBurst(int[] arr){
+        int[][] dp=new int[arr.length][arr.length];
+        int max=Integer.MAX_VALUE; 
+        for(int g=0;g<dp.length;g++){
+            for(int i=0,j=g;j<dp.length;i++,j++){
+                for(int k=i;k<=j;k++){
+                    int left=k==i?0:dp[i][k-1];   //agr k i le barabar nhi hua tohi this warna 0 left wala area hoga isme
+                    int right=k==j?0:dp[k+1][j];   //current ballon ke right wala area hoga k+1-->j
+                   int val=arr[k];
+                   if(i>0){
+                       val=val*arr[i-1];
+                   }
+                  if(j!=arr.length){
+                       val=val*arr[j+1];
+                   }
+                  int total=left+right+val;
+                  if(total>max){
+                      max=total;
+                  }
+                  dp[i][j]=max;
+                }
+            }
+        }
+       return dp[0][dp.length-1] ;
+    }
+}
