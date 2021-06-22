@@ -1,0 +1,30 @@
+class Array1{
+    public static void main(String[] args){
+        
+        
+    }
+    public static int Maxdiff(String s){
+        int ans=0;
+        int csum=0;
+        for(int i=0;i<s.length();i++){
+            int val=0;
+            if(s.charAt(i)=='0'){
+                val=1;
+            }
+            else if(s.charAt(i)=='1'){
+                val=-1; 
+            }
+            //below code will add first of sll o's value which is one....uske baad hi kuch aur add karega..kadaan'es aalgo
+            if(csum>0){
+            csum+=val;
+        }
+            else{
+                csum=val;
+            }
+            if(csum>ans){
+                ans=csum;
+            }
+        }
+        return ans;
+    }
+}
