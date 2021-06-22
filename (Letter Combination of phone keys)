@@ -1,0 +1,42 @@
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+class Array1{
+    public static void main(String[] args){
+        
+        
+    }
+    public static int Maxdiff(int n){
+       int[][] dp=new int[n+1][10];
+       ArrayList<Integer>[] data=new ArrayList[10];
+       data[0]=Arrays.asList({0,8});
+         data[1]=Arrays.asList({1,2,4});
+           data[2]=Arrays.asList({1,2,3,5}); //and so on
+             data[3]=Arrays.asList({0,8});
+               data[4]=Arrays.asList({0,8}); 
+               data[5]=Arrays.asList({0,8});
+                 data[6]=Arrays.asList({0,8});
+                   data[7]=Arrays.asList({0,8});
+    
+    
+       for(int i=1;i<=n;i++){
+           for(int j=0;j<=9;i++){
+               if(i==1){
+               dp[i][j]=1;
+           }
+               else{
+                   //ith press for jth key....i-> ith press should be of keys in data[j]
+               }
+                  for(int prev:data[j]) {
+                      dp[i][j]+=dp[i-1][prev];
+                  }
+               }
+       }
+       int sum=0;
+       for(int i=0;i<=9;i++){
+           sum+=dp[n][i];
+       }
+       return sum;
+    }
+}
