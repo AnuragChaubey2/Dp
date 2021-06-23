@@ -1,0 +1,38 @@
+class Array1{
+    public static void main(String[] args){
+        
+    }
+    public static int Ugly(int n){
+        int[] ugly=new int[n];
+        ugly[0]=1;//the firsst number is bydefault 0
+        int i2=0,i3=0,i5=0;
+        int next_multiple_2=2;
+        int next_multiple_3=3;
+        int next_multiple_5=5;    //this is for identifying which number is going to be the next element
+        int next_ugly=1;
+        for(int i=1;i<n;i++){
+            //from here we will start filling the value 2,3,4,5
+            //we just have to identify which is will be the next element...or the number which is divisible by 2,3 or 5
+            //agla ugly number wahi hoga jo 2se 3se and 5 se divide hone wala sabse mjinimum element hoga
+            next_ugly=Math.min(next_multiple_2,Math.min(next_multiple_3, next_multiple_5));
+            //from here we will identify aglaa ane wala number kaun sa hai
+            ugly[i]=next_ugly;  //from here we put the value in the array..now we have to find the future values of the next element which is the multiple
+            //of 2
+            if(next_ugly==next_multiple_2){
+                i2=i2+1;
+                next_multiple_2=ugly[i2]*2;               
+            }
+            if(next_ugly==next_multiple_3){
+                i3=i3+1;
+                next_multiple_3=ugly[i3]*3;
+            }
+            if(next_ugly==next_multiple_5)
+            {
+                i5=i5+1;
+                next_multiple_5=ugly[i5]*5;
+            }
+            
+        }
+        return next_ugly;
+    }
+}
