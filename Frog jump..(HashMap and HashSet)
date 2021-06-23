@@ -1,0 +1,38 @@
+import java.util.HashMap;
+import java.util.HashSet;
+class Array1{
+    public static void main(String[] args){
+        
+    }
+    public boolean FrogJump(int[] stones){
+        HashMap<Integer,HashSet<Integer>> map=new HashMap<>();
+        //first of all add these stones in hashmap
+        for(int i=0;i<stones.length;i++){
+            map.put(stones[i],new HashSet<>());
+        }
+        map.get(stones[0]).add(1); //zero se hmesha ek jump allowed hota hi hai 
+        for(int i=0;i<stones.length;i++){
+            int currStone=stones[i];
+            //now from here kaha kaha jaa sakte
+            HashSet<Integer> jumps=map.get(currStone);
+            for(int jump:jumps){
+                //sarre option discrover karte hai
+                int position=currStone+jump; //cureent position se jump mara new position pe
+                //agar wo position exist karta hai..
+                if(position==stones[stones.length-1]){
+                    return true;  //agar position destination hai
+                }
+                //nhi to agar patthar rakha hua hai to us jagah jaake options update karke aa jaao
+                if(map.containsKey(position)==true){
+                    if(jump-1>0){
+                    map.get(position).add(jump-1);}
+                     map.get(position).add(jump);
+                      map.get(position).add(jump+1);
+                    
+                }
+                
+            }
+        }
+        return false;
+    }
+}
