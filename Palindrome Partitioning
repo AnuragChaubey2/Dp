@@ -57,6 +57,63 @@ class Array1{
 
 //this will give us n3 complexity
 
+//n2 complexity------->>>>>>>>>>>>>
+
+ class Array1{
+    public static void main(String[] args){
+        
+    }
+    public static int arr(String s){
+        boolean[][] dp=new boolean[s.length()][s.length()];
+        for(int gap=0;gap<s.length();gap++){
+            for(int i=0,j=gap;j<dp.length;i++,j++){
+                if(gap==0){
+                    dp[i][j]=true;
+                }
+                else if(gap==1){
+                    dp[i][j]=s.charAt(i)==s.charAt(j);
+                }
+                else{
+                    if(s.charAt(i)==s.charAt(j) && dp[i+1][j-1]==true){
+                    dp[i][j]=true;
+                }
+                    else
+                    {
+                        dp[i][j]=false;
+                    }
+                }
+            }
+        }
+        int[] dpp=new int[s.length()];
+        dpp[0]=0;
+        //jo jo palidnrome hoga...joki uopar wali dp se pata chalega uske bache hue hisse ke liye call laga dengey
+        //Suffix stragy se
+        int Min=Integer.MAX_VALUE;
+        for(int j=1;j<dpp.length;j++){
+        if(dp[0][j]){    //agar poori ki poori substring hi palindrome hai to 0 daal do
+            dpp[j]=0;
+        }    else{
+        
+            for(int i=j;i>=1;i--){
+                //suffix
+                if(dp[i][j]){
+                    if(dpp[i-1]<Min){
+                        Min=dpp[i-1];   //j tak ki string hai to 0----i-1 prefix hai hmari current element ko prexif me nhi include karte hai
+                    }
+                }
+            }
+            dpp[j]=Min+1;    //+1 jo hmari lagai hui cut hai wo 
+            return dpp[dpp.length-1];
+        }
+        
+        }
+    }
+ }
+
+
+
+
+
 
 
 / Java Code for Palindrome Partitioning
